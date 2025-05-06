@@ -1,0 +1,60 @@
+COMENTARIOS PARA NUESTRO ENTENDIMIENTO DE LAS FUNCIONES:
+
+FOLDIB:
+
+La función foldDib toma una serie de funciones y un valor inicial b, y aplica estas funciones a la estructura Dibujo para "colapsar" la estructura en un solo valor de tipo b. Los parámetros de la función foldDib son las funciones que se aplicarán a cada constructor de Dibujo para producir el resultado final.
+
+Veamos los parámetros y cómo se aplican en cada caso:
+
+    f: función que se aplica a una figura para producir un valor de tipo b.
+    es: función que se aplica a un dibujo espejado para producir un valor de tipo b.
+    r45: función que se aplica a un dibujo rotado 45 grados para producir un valor de tipo b.
+    r: función que se aplica a un dibujo rotado para producir un valor de tipo b.
+    a: función que se aplica a dos coordenadas (x, y) y dos dibujos para producir un valor de tipo b.
+    j: función que se aplica a dos coordenadas (x, y) y dos dibujos para producir un valor de tipo b.
+    en: función que se aplica a dos dibujos para producir un valor de tipo b.
+
+Ahora, veamos cómo se aplica foldDib a cada constructor de Dibujo:
+
+    Para Figura a: aplica la función f a la figura a.
+    Para Espejar a: aplica la función es al dibujo espejado de a, recursivamente aplicando foldDib.
+    Para Rot45 a: aplica la función r45 al dibujo rotado 45 grados de a, recursivamente aplicando foldDib.
+    Para Rotar a: aplica la función r al dibujo rotado de a, recursivamente aplicando foldDib.
+    Para Apilar x y a b: aplica la función a a las coordenadas (x, y) y a los resultados de aplicar foldDib recursivamente a a y b.
+    Para Juntar x y a b: aplica la función j a las coordenadas (x, y) y a los resultados de aplicar foldDib recursivamente a a y b.
+    Para Encimar a b: aplica la función e a los resultados de aplicar foldDib recursivamente a a y b.
+
+-- f: Figura
+-- es: Espejar
+-- r45: Rot45
+-- r: Rotar
+-- a: Apilar
+-- j: Juntar
+-- en: Encimar
+
+--La función foldDib es una implementación del patrón de diseño de recursión estructural 
+--para el tipo de dato Dibujo. Te permite definir una operación recursiva que se aplica a
+--cada parte de un dibujo, de acuerdo a cómo se construyó ese dibujo. 
+--Es similar en espíritu a funciones como foldr que se usan en listas, 
+--pero adaptada específicamente para tu tipo de dato Dibujo.En resumen, 
+--mapDib se usa para transformar cada parte de un Dibujo individualmente, 
+--mientras que foldDib se usa para reducir o resumir la estructura de un Dibujo en 
+--un solo valor, aplicando operaciones acumulativas según la estructura del Dibujo.
+
+
+--foldDib se usa para recorrer el dibujo y aplicar operaciones según la estructura de este.
+
+PRED:
+--pred se aplica a las figuras básicas para verificar si cumplen con el predicado.
+--id se usa para los demás constructores (como Encimar, Apilar, etc.), lo que indica que no se aplican cambios a su comportamiento en esta verificación.
+--(\ _ _ a b -> a||b) y (\ _ _ a b -> a||b) son funciones de combinación para los constructores Encimar, Apilar, etc. En este caso, se utiliza la operación || (o "or") para combinar los resultados. Es decir, si al menos una parte del dibujo cumple con el predicado, el resultado es True.
+--\ _ _ a -> a es una función de combinación para el constructor Espejar, que simplemente devuelve el resultado sin realizar ninguna operación adicional.
+--(||) es el operador lógico OR binario en Haskell. Toma dos argumentos booleanos y devuelve True si al menos uno de ellos es True, y False si ambos son False.
+
+ANYDIB:
+Nuestro pred es el "caso base" por recursividad de folDib siempre llega hasta ahi analizando 
+el predicado, los 3 id que le siguen corresponden a espejar, rot45 y rotar, que basicamente 
+es la misma figura con alguna alteracion, recursivamente vuelven a su figurabasica y se 
+analiza pred (caso base). Despues para Apilar, Juntar y Encimar va a analizar recursivamente
+cada dibujo hasta llegar a la figura basica de ellos, chekeando el predicado, si alguno de 
+los dos da true, ya da true (a||b)
