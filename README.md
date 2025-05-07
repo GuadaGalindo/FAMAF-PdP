@@ -7,10 +7,8 @@ Laboratorios resueltos de la materia **"Paradigmas de la Programación"** de 3er
 - Haskell (Laboratorio 1)
 - Java (Laboratorios 2 y 3)
 
-### Autora
+### Autores
 
-**Guadalupe Galindo**  
-Estudiante de Ciencias de la Computación FAMAF - UNC
-
-- [LinkedIn](https://linkedin.com/in/guadagalindo)
-- [GitHub](https://github.com/GuadaGalindo)
+- [Guadalupe Galindo](https://github.com/GuadaGalindo)
+- [Felipe Jimenez](https://github.com/felijimeneez)
+- [Dianela Fernandez](https://github.com/Dianefz)
